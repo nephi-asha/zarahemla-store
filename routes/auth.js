@@ -8,11 +8,9 @@ router.get('/logout', function(req, res, next) {
         if (err) { return next(err); }
         
         req.session.destroy(function(err) {
-            if (err) { 
-              return next(err); 
-            }
-    
-            res.clearCookie('connect.sid'); 
+            if (err) { return next(err); }
+            res.clearCookie('connect.sid', { path: '/' }); 
+
             res.redirect('/');
         });
     });
