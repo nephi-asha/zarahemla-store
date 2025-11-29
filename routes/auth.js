@@ -11,6 +11,8 @@ router.get('/logout', function(req, res, next) {
             if (err) { 
               return next(err); 
             }
+    
+            res.clearCookie('connect.sid'); 
             res.redirect('/');
         });
     });
