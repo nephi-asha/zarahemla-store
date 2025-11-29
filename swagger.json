@@ -1,0 +1,81 @@
+{
+  "paths": {
+    "/products": {
+      "get": {
+        "summary": "Get all products",
+        "responses": { "200": { "description": "OK" } }
+      },
+      "post": {
+        "summary": "Create product (Login Required)",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": { "type": "string" },
+                "description": { "type": "string" },
+                "price": { "type": "number" },
+                "category": { "type": "string" },
+                "stock": { "type": "number" },
+                "brand": { "type": "string" },
+                "sku": { "type": "string" }
+              }
+            }
+          }
+        ],
+        "responses": { 
+          "201": { "description": "Created" },
+          "400": { "description": "Validation Error" },
+          "401": { "description": "Unauthorized" }
+        }
+      }
+    },
+    "/categories": {
+      "get": { "summary": "Get all categories", "responses": { "200": { "description": "OK" } } },
+      "post": { 
+        "summary": "Create category", 
+        "parameters": [{ "in": "body", "name": "body", "schema": { "$ref": "#/definitions/Category" } }],
+        "responses": { "201": { "description": "Created" } } 
+      }
+    },
+    "/user/{username}": {
+      "get": { "summary": "Get user info", "parameters": [{ "name": "username", "in": "path", "required": true, "type": "string" }], "responses": { "200": { "description": "OK" } } }
+    },
+    "/user/{username}/carts": {
+      "get": { 
+        "summary": "Get user carts", 
+        "parameters": [{ "name": "username", "in": "path", "required": true, "type": "string" }],
+        "responses": { "200": { "description": "OK" } } 
+      },
+      "post": { 
+        "summary": "Create cart", 
+        "parameters": [
+            { "name": "username", "in": "path", "required": true, "type": "string" },
+            { "in": "body", "name": "body", "schema": { "$ref": "#/definitions/Cart" } }
+        ],
+        "responses": { "201": { "description": "Created" } } 
+      }
+    }
+  },
+  "definitions": {
+    "Category": {
+      "type": "object",
+      "properties": { "name": { "type": "string" }, "description": { "type": "string" } }
+    },
+    "Cart": {
+      "type": "object",
+      "properties": { 
+        "items": { 
+          "type": "array", 
+          "items": { 
+            "type": "object", 
+            "properties": { "productId": { "type": "string" }, "quantity": { "type": "integer" } } 
+          } 
+        } 
+      }
+    }
+  }
+}
