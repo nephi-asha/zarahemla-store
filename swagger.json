@@ -1,4 +1,13 @@
 {
+  "swagger": "2.0",
+  "info": {
+    "title": "Zarahemla Store API",
+    "description": "API for Zarahemla Store Ecommerce",
+    "version": "1.0.0"
+  },
+  "host": "zarahemla-store.onrender.com",
+  "basePath": "/",
+  "schemes": ["https", "http"],
   "paths": {
     "/products": {
       "get": {
@@ -13,16 +22,7 @@
             "name": "body",
             "required": true,
             "schema": {
-              "type": "object",
-              "properties": {
-                "name": { "type": "string" },
-                "description": { "type": "string" },
-                "price": { "type": "number" },
-                "category": { "type": "string" },
-                "stock": { "type": "number" },
-                "brand": { "type": "string" },
-                "sku": { "type": "string" }
-              }
+              "$ref": "#/definitions/Product"
             }
           }
         ],
@@ -33,12 +33,52 @@
         }
       }
     },
+    "/products/{id}": {
+      "get": {
+        "summary": "Get single product",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "type": "string" }],
+        "responses": { "200": { "description": "OK" }, "404": { "description": "Not Found" } }
+      },
+      "put": {
+        "summary": "Update product (Login Required)",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "type": "string" },
+          { "in": "body", "name": "body", "required": true, "schema": { "$ref": "#/definitions/Product" } }
+        ],
+        "responses": { "204": { "description": "Updated" }, "400": { "description": "Validation Error" }, "401": { "description": "Unauthorized" } }
+      },
+      "delete": {
+        "summary": "Delete product (Login Required)",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "type": "string" }],
+        "responses": { "200": { "description": "Deleted" }, "401": { "description": "Unauthorized" } }
+      }
+    },
     "/categories": {
       "get": { "summary": "Get all categories", "responses": { "200": { "description": "OK" } } },
       "post": { 
-        "summary": "Create category", 
+        "summary": "Create category (Login Required)", 
         "parameters": [{ "in": "body", "name": "body", "schema": { "$ref": "#/definitions/Category" } }],
-        "responses": { "201": { "description": "Created" } } 
+        "responses": { "201": { "description": "Created" }, "400": { "description": "Validation Error" }, "401": { "description": "Unauthorized" } } 
+      }
+    },
+    "/categories/{id}": {
+      "get": {
+        "summary": "Get single category",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "type": "string" }],
+        "responses": { "200": { "description": "OK" }, "404": { "description": "Not Found" } }
+      },
+      "put": {
+        "summary": "Update category (Login Required)",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "type": "string" },
+          { "in": "body", "name": "body", "required": true, "schema": { "$ref": "#/definitions/Category" } }
+        ],
+        "responses": { "204": { "description": "Updated" }, "400": { "description": "Validation Error" }, "401": { "description": "Unauthorized" } }
+      },
+      "delete": {
+        "summary": "Delete category (Login Required)",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "type": "string" }],
+        "responses": { "200": { "description": "Deleted" }, "401": { "description": "Unauthorized" } }
       }
     },
     "/user/{username}": {
@@ -61,6 +101,19 @@
     }
   },
   "definitions": {
+    "Product": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "price": { "type": "number" },
+        "category": { "type": "string" },
+        "stock": { "type": "number" },
+        "brand": { "type": "string" },
+        "sku": { "type": "string" },
+        "image": { "type": "string" }
+      }
+    },
     "Category": {
       "type": "object",
       "properties": { "name": { "type": "string" }, "description": { "type": "string" } }
