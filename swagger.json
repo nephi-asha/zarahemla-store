@@ -7,14 +7,27 @@
   },
   "host": "zarahemla-store.onrender.com",
   "basePath": "/",
-  "schemes": ["https", "http"],
+  "schemes": [
+    "https",
+    "http"
+  ],
   "paths": {
     "/products": {
       "get": {
+        "tags": [
+          "Products"
+        ],
         "summary": "Get all products",
-        "responses": { "200": { "description": "OK" } }
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
       },
       "post": {
+        "tags": [
+          "Products"
+        ],
         "summary": "Create product (Login Required)",
         "parameters": [
           {
@@ -26,77 +39,282 @@
             }
           }
         ],
-        "responses": { 
-          "201": { "description": "Created" },
-          "400": { "description": "Validation Error" },
-          "401": { "description": "Unauthorized" }
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Validation Error"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
         }
       }
     },
     "/products/{id}": {
       "get": {
+        "tags": [
+          "Products"
+        ],
         "summary": "Get single product",
-        "parameters": [{ "name": "id", "in": "path", "required": true, "type": "string" }],
-        "responses": { "200": { "description": "OK" }, "404": { "description": "Not Found" } }
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
       },
       "put": {
+        "tags": [
+          "Products"
+        ],
         "summary": "Update product (Login Required)",
         "parameters": [
-          { "name": "id", "in": "path", "required": true, "type": "string" },
-          { "in": "body", "name": "body", "required": true, "schema": { "$ref": "#/definitions/Product" } }
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          }
         ],
-        "responses": { "204": { "description": "Updated" }, "400": { "description": "Validation Error" }, "401": { "description": "Unauthorized" } }
+        "responses": {
+          "204": {
+            "description": "Updated"
+          },
+          "400": {
+            "description": "Validation Error"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
       },
       "delete": {
+        "tags": [
+          "Products"
+        ],
         "summary": "Delete product (Login Required)",
-        "parameters": [{ "name": "id", "in": "path", "required": true, "type": "string" }],
-        "responses": { "200": { "description": "Deleted" }, "401": { "description": "Unauthorized" } }
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deleted"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
       }
     },
     "/categories": {
-      "get": { "summary": "Get all categories", "responses": { "200": { "description": "OK" } } },
-      "post": { 
-        "summary": "Create category (Login Required)", 
-        "parameters": [{ "in": "body", "name": "body", "schema": { "$ref": "#/definitions/Category" } }],
-        "responses": { "201": { "description": "Created" }, "400": { "description": "Validation Error" }, "401": { "description": "Unauthorized" } } 
+      "get": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "Get all categories",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "Create category (Login Required)",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/Category"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Validation Error"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
       }
     },
     "/categories/{id}": {
       "get": {
+        "tags": [
+          "Categories"
+        ],
         "summary": "Get single category",
-        "parameters": [{ "name": "id", "in": "path", "required": true, "type": "string" }],
-        "responses": { "200": { "description": "OK" }, "404": { "description": "Not Found" } }
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
       },
       "put": {
+        "tags": [
+          "Categories"
+        ],
         "summary": "Update category (Login Required)",
         "parameters": [
-          { "name": "id", "in": "path", "required": true, "type": "string" },
-          { "in": "body", "name": "body", "required": true, "schema": { "$ref": "#/definitions/Category" } }
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Category"
+            }
+          }
         ],
-        "responses": { "204": { "description": "Updated" }, "400": { "description": "Validation Error" }, "401": { "description": "Unauthorized" } }
+        "responses": {
+          "204": {
+            "description": "Updated"
+          },
+          "400": {
+            "description": "Validation Error"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
       },
       "delete": {
+        "tags": [
+          "Categories"
+        ],
         "summary": "Delete category (Login Required)",
-        "parameters": [{ "name": "id", "in": "path", "required": true, "type": "string" }],
-        "responses": { "200": { "description": "Deleted" }, "401": { "description": "Unauthorized" } }
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deleted"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
       }
     },
     "/user/{username}": {
-      "get": { "summary": "Get user info", "parameters": [{ "name": "username", "in": "path", "required": true, "type": "string" }], "responses": { "200": { "description": "OK" } } }
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get user info",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     },
     "/user/{username}/carts": {
-      "get": { 
-        "summary": "Get user carts", 
-        "parameters": [{ "name": "username", "in": "path", "required": true, "type": "string" }],
-        "responses": { "200": { "description": "OK" } } 
-      },
-      "post": { 
-        "summary": "Create cart", 
-        "parameters": [
-            { "name": "username", "in": "path", "required": true, "type": "string" },
-            { "in": "body", "name": "body", "schema": { "$ref": "#/definitions/Cart" } }
+      "get": {
+        "tags": [
+          "Carts"
         ],
-        "responses": { "201": { "description": "Created" } } 
+        "summary": "Get user carts",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Carts"
+        ],
+        "summary": "Create cart",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/Cart"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
       }
     }
   },
@@ -104,30 +322,60 @@
     "Product": {
       "type": "object",
       "properties": {
-        "name": { "type": "string" },
-        "description": { "type": "string" },
-        "price": { "type": "number" },
-        "category": { "type": "string" },
-        "stock": { "type": "number" },
-        "brand": { "type": "string" },
-        "sku": { "type": "string" },
-        "image": { "type": "string" }
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "price": {
+          "type": "number"
+        },
+        "category": {
+          "type": "string"
+        },
+        "stock": {
+          "type": "number"
+        },
+        "brand": {
+          "type": "string"
+        },
+        "sku": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        }
       }
     },
     "Category": {
       "type": "object",
-      "properties": { "name": { "type": "string" }, "description": { "type": "string" } }
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
     },
     "Cart": {
       "type": "object",
-      "properties": { 
-        "items": { 
-          "type": "array", 
-          "items": { 
-            "type": "object", 
-            "properties": { "productId": { "type": "string" }, "quantity": { "type": "integer" } } 
-          } 
-        } 
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "productId": {
+                "type": "string"
+              },
+              "quantity": {
+                "type": "integer"
+              }
+            }
+          }
+        }
       }
     }
   }
